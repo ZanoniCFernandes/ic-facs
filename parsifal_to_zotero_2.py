@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Parsifal -> Zotero (versão final, robusta)
 - Seleciona CSV (janela).
@@ -11,6 +10,7 @@ Parsifal -> Zotero (versão final, robusta)
 - Gera logs: impressão no console, arquivo JSONL de logs detalhados e failed_rows.csv com motivo.
 - Mostra popups informativos (Tkinter).
 """
+
 
 import csv, json, time, os, requests
 from tkinter import filedialog, simpledialog, messagebox, Tk
@@ -141,7 +141,8 @@ def _sanitize_data_for_itemtype(data, itemType):
     return {k: v for k, v in data.items() if k in allowed}
 
 def create_tags(keywords):
-    nKey = keywords.split(',')
+    nKeywords = keywords.replace(';', ',') 
+    nKey = nKeywords.split(',')  
     output = []
     for value in nKey:
         value = value.strip()
